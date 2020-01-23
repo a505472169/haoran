@@ -1,4 +1,4 @@
-tree_plot<-function(dataset,title,fontcolor="red",fontname = "helvetica",arrowcolor="black",boxcolor="black"){
+tree_plot<-function(dataset,title,fontcolor="black",fontname = "helvetica",arrowcolor="black",boxcolor="black"){
 require(data.tree)
 dataset=dataset$frame[,c("node","var","xval","n","mean","end")]
 dataset$mean=round(dataset$mean,2)
@@ -14,7 +14,7 @@ for(i in c(2:length(dataset[,1]))){
 newdata=dataset
 ak=c(2:length(dataset[,1]))
 newdata$parentname[ak[dataset$end[ak]=="E"]]=dataset$name[ak[dataset$end[ak]=="E"]]
-newdata$name[ak[dataset$end[ak]=="E"]]=paste("node=",dataset$node[ak[dataset$end[ak]=="E"]],"n=",dataset$n[ak[dataset$end[ak]=="E"]],"mean=",dataset$mean[ak[dataset$end[ak]=="E"]])
+newdata$name[ak[dataset$end[ak]=="E"]]=paste("n=",dataset$n[ak[dataset$end[ak]=="E"]],",","mean=",dataset$mean[ak[dataset$end[ak]=="E"]],"mm Hg")
 newdata1=rbind(dataset,newdata)
 
 dat_network <- newdata1[,c("name", "parentname")]
@@ -29,5 +29,5 @@ plot(dat_tree)
 
 #The dataset in this Function is the name of tree you generate, this function could assign the fontcolor,boxcolor and arrowcolor.
 #for example the dia_tree_mn3.
-tree_plot(dia_tree_mn3,"tree",fontcolor = "blue",boxcolor = "red",arrowcolor = "green")
+
 
